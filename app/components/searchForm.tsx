@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { Search, X } from "lucide-react"; // Fixed import from lucide-react
 
 const SearchForm = ({ query = '' }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,19 +26,22 @@ const SearchForm = ({ query = '' }) => {
           name="query"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-white text-gray-800 px-6 py-3 rounded-full border-2 border-white focus:outline-none font-medium text-lg"
+          className="w-full bg-white text-gray-800 px-6 py-3 pl-12 rounded-full border-2 border-white focus:outline-none font-medium text-lg"
         />
+        
+        {/* Search icon at the left */}
+        <Search className="absolute left-4 text-gray-400" size={20} />
         
         {/* Search button */}
         <button 
           type="submit" 
-          className="absolute right-1 bg-black text-white rounded-full w-10 h-10 flex items-center justify-center font-bold"
+          className="absolute right-1 bg-black text-white rounded-full w-10 h-10 flex items-center justify-center"
           aria-label="Search"
         >
-          S
+          <Search size={18} />
         </button>
         
-        {/* Reset button - only visible when there's text */}
+        {/* Reset button with X icon - only visible when there's text */}
         {isMounted && searchQuery && (
           <button 
             type="button" 
@@ -45,7 +49,7 @@ const SearchForm = ({ query = '' }) => {
             className="absolute right-14 text-gray-500 hover:text-black"
             aria-label="Reset search"
           >
-            ✕
+            <X size={18} />
           </button>
         )}
       </div>
